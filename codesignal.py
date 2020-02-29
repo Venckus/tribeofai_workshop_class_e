@@ -115,3 +115,38 @@ def commonCharacterCount(s1, s2):
 print('commonCharacterCount of "aabcc" and "adcaa" is 3 = ',commonCharacterCount("aabcc","adcaa"))
 print('commonCharacterCount of "zzzz" and "zzzzzzz" is 4 = ',commonCharacterCount("zzzz","zzzzzzz"))
 print('commonCharacterCount of "abca" and "xyzbac" is 3 = ',commonCharacterCount("abca","xyzbac"))
+
+# codesignal level3 n3 - lottery win when one half of matrix sum is equal to other half
+def isLucky(n):
+    half = len(list(n)) // 2
+    sum1 = 0
+    sum2 = 0
+    for i in n[:half]:
+        sum1 += int(i)
+    for j in n[half:]:
+        sum2 += int(j)
+    return sum1 == sum2
+# tests
+print('the ticket with "134008" is lucky: true = ',isLucky('134008'))
+print('the ticket with "239017" is lucky: false = ',isLucky('239017'))
+
+# codesignal level3 n4 - sort low to high humans ignoring trees
+def sortByHeight(a):
+    new = []
+    tmp = []
+    for v in a:
+        if v != -1:
+            tmp.append(v)
+    tmp.sort()
+    z = 0
+    for j,x in enumerate(a):
+        if x == -1:
+            new.insert(j, x)
+        else:
+            new.insert(j, tmp[z])
+            z += 1
+    return new
+
+# tests
+print('sorted: ',sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))
+print('sorted: ',sortByHeight([23, 54, -1, 43, 1, -1, -1, 77, -1, -1, -1, 3]))
