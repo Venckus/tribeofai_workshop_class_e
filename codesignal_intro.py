@@ -150,3 +150,52 @@ def sortByHeight(a):
 # tests
 print('sorted: ',sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))
 print('sorted: ',sortByHeight([23, 54, -1, 43, 1, -1, -1, 77, -1, -1, -1, 3]))
+
+# codesignal level3 n5 - invert string in parentheses
+def reverseInParentheses(inputString):
+    stack = []
+    for x in inputString:
+        if x == ")":
+            tmp = ""
+            while stack[-1] != "(":
+                tmp += stack.pop()
+            stack.pop() # pop the (
+            for item in tmp:
+                stack.append(item)
+        else:
+            stack.append(x)
+
+    return "".join(stack)
+
+# tests "(bar)"
+print('==========\n1) inverted: ',reverseInParentheses("(bar)")) # expected "rab"
+print('==========\n2) inverted: ',reverseInParentheses("foo(bar)baz")) # expected "foorabbaz"
+print('==========\n3) inverted: ',reverseInParentheses("foo(bar)baz(blim)")) # expected "foorabbazmilb"
+print('==========\n4) inverted: ',reverseInParentheses("foo(bar(baz))blim"))  # expected "foobazrabblim"
+
+# codesignal level4 n1 - alternating sums
+def alternatingSums(a):
+    return [sum(a[::2]), sum(a[1::2])]
+
+# tests
+print('==========\n1) inverted: ',alternatingSums([50, 60, 60, 45, 70])) # expected [180, 105]
+print('==========\n2) inverted: ',alternatingSums([100, 50])) # expected [100, 50]
+print('==========\n3) inverted: ',alternatingSums([100, 50, 10, 20, 30, 40])) # expected [140, 110]
+
+# codesignal level4 n2 - alternating sums
+def addBorder(picture):
+    output = []
+    border = ""
+    for i in range(0,len(picture[0])+2):
+        border += "*"
+    output.append(border)
+    for i in range(0,len(picture)):
+        output.append("*"+picture[i]+"*")
+
+    output.append(border)
+
+    return output
+
+# tests
+print('==========\n1) bordered: ',addBorder(["abc","ded"])) # expected
+print('==========\n2) bordered: ',addBorder(["a"])) # expected
