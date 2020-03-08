@@ -199,3 +199,96 @@ def addBorder(picture):
 # tests
 print('==========\n1) bordered: ',addBorder(["abc","ded"])) # expected
 print('==========\n2) bordered: ',addBorder(["a"])) # expected
+
+# codesignal level4 n3 - similar when swapping at least 2 array members
+def areSimilar(a, b):
+    if a == b: return True 
+    not_same = []
+    tmp = b
+    for i,v in enumerate(a):
+        # when more than 2 elements values do not match 
+        if len(not_same) > 2: return False #  result is false
+        # when value of same index in both lists do not match
+        if v != b[i]: not_same.append(i) # remember the value that did not matched
+    if len(not_same) == 2:
+        tmp[not_same[1]], tmp[not_same[0]] = b[not_same[0]], b[not_same[1]]
+        print(f"a: {a}, b: {b}, tmp: {tmp}, not_same: {not_same}")
+        return True if tmp == a else False
+    return False
+# tests
+print('=========\n1) areSimilar is false =', areSimilar([1, 1, 4], [1, 2, 3]))
+print('=========\n2) areSimilar is false =', areSimilar([1, 2, 2], [2, 1, 1]))
+print('=========\n3) areSimilar false =', areSimilar([832, 998, 148, 570, 533, 561, 894, 147, 455, 279], [832, 570, 148, 998, 533, 561, 455, 147, 894, 279]))
+
+# codesignal level4 n4 -
+def arrayChange(inputArray):
+    sum = 0
+    q = inputArray[0]
+    for i in inputArray[1:]:
+        if i <= q:
+            sum += q-i+1
+            q = q+1
+        else:
+            q = i
+    return sum
+
+# tests
+print('=========\n1) arrayChange is 3 =', arrayChange([1, 1, 1]))
+print('=========\n2) arrayChange is 5 =', arrayChange([-1000, 0, -2, 0]))
+
+# codesignal level4 n5 -
+def palindromeRearranging(inputString):
+    r = {}
+    for v in inputString:
+        if v not in r:
+            r[v] = 1
+        else:
+            r[v] += 1
+    count = [x for x in r if r[x] % 2]
+    if len(count) > 1:
+        return False
+    else:
+        return True
+# tests
+print('=========\n1) palindromeRearranging is true =', palindromeRearranging("aabb"))
+print('=========\n2) palindromeRearranging is false =', palindromeRearranging("abca"))
+
+# codesignal level5 n1 -
+def areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight):
+    return True if yourLeft == friendsLeft and yourRight == friendsRight or yourLeft == friendsRight and yourRight == friendsLeft else False
+# tests
+print('=========\n1) areEquallyStrong is true =', areEquallyStrong(10, 15, 15, 10))
+print('=========\n2) areEquallyStrong is false =', areEquallyStrong(15, 10, 15, 9))
+
+# codesignal level5 n2 -
+def arrayMaximalAdjacentDifference(inputArray):
+    diff = 0
+    tmp = inputArray[0]
+    for i in inputArray[1:]:
+        if tmp > i and diff < tmp - i:
+            diff = tmp - i
+        if tmp < i and diff < i - tmp:
+            diff = i - tmp
+        tmp = i
+    return diff
+# tests
+print('=========\n1) arrayMaximalAdjacentDifference is 2 =',
+    arrayMaximalAdjacentDifference([10, 11, 13]))
+print('=========\n2) arrayMaximalAdjacentDifference is 0 =',
+    arrayMaximalAdjacentDifference([1, 1, 1, 1]))
+print('=========\n3) arrayMaximalAdjacentDifference is 7 =',
+    arrayMaximalAdjacentDifference([-1, 4, 10, 3, -2]))
+
+# codesignal level5 n3 -
+def isIPv4Address(inputString):
+    splited = inputString.split('.')
+    if len(splited) != 4:
+        return False
+    for x in splited:
+        if x == '' or not x.isdigit() or int(x) < 0 or 255 < int(x):
+            return False
+    return True
+# tests
+print('=========\n1) isIPv4Address is true =', isIPv4Address("172.16.254.1"))
+print('=========\n2) isIPv4Address is false =', isIPv4Address("172.316.254.1"))
+print('=========\n3) isIPv4Address is false =', isIPv4Address(".254.255.0"))

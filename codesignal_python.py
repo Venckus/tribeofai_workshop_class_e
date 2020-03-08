@@ -127,14 +127,14 @@ def newStyleFormatting(s):
 print('=========\n1) newStyleFormatting: {}%  =', newStyleFormatting("We expect the %f%% growth this week"))
 print('=========\n2) newStyleFormatting: {}%  =', newStyleFormatting("%d%d%%-growth in products is expected quite soon"))
 
-# 19)
+# 20)
 def getCommit(commit):
     return ''.join(c for c in commit if c not in set('0?!+'))
 # tests
 print('=========\n1) getCommit: someCommIdhsSt =', getCommit("0??+0+!!someCommIdhsSt"))
 print('=========\n2) getCommit: "" =', getCommit("?????!+0"))
 
-# 20)
+# 22)
 def listsConcatenation(lst1, lst2):
     res = lst1
     res.extend(lst2)
@@ -143,10 +143,30 @@ def listsConcatenation(lst1, lst2):
 print('=========\n1) listsConcatenation: [2, 2, 1, 10, 11] =', listsConcatenation([2, 2, 1],[10, 11]))
 print('=========\n2) listsConcatenation: [5, 3, -2, 0] =', listsConcatenation([],[5, 3, -2, 0]))
 
-# 21)
+# 23)
 def twoTeams(students):
     return sum(students[::2]) - sum(students[1::2])
 # tests
 print('=========\n1) twoTeams: sum subtraction is 11 =', twoTeams([1, 11, 13, 6, 14]))
 print('=========\n2) twoTeams: sum subtraction is -1 =', twoTeams([3, 4]))
 print('=========\n3) twoTeams: sum subtraction is -38 =', twoTeams([23, 72, 54, 4, 88, 91, 8, 44]))
+
+
+# 24)
+def removeTasks(k, toDo):
+    del toDo[k-1::k]
+    return toDo
+# tests
+print('=========\n1) result [1237, 2847, 2947, 1, 374827, 22] \nis',
+    removeTasks(3, [1237, 2847, 27485, 2947, 1, 247, 374827, 22]))
+print('=========\n2) result [] =\nis',
+    removeTasks(1, [1237, 2847, 27485, 2947, 1, 247, 374827, 22]))
+print('=========\n3) result [1237] =\nis',
+    removeTasks(10, [1237]))
+
+# 25) print text with all list
+def printList(lst):
+    return f"This is your list: {lst}"
+# tests
+print('=========\n1) This is your list: [1, 2, 3, 4, 5] \n=', printList([1, 2, 3, 4, 5]))
+print('=========\n2) This is your list: [71] \n=',printList([71]))
