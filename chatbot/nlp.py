@@ -106,14 +106,14 @@ class Nlp(object):
     
     def load_context(self):
         'read context.json to nlp context ojbect dict'
-        with open('context.json') as json_file:
+        with open('chatbot/context.json') as json_file:
             f =json.load(json_file)
             for k, context in f.items():
                 self.context_lib.append(Context(k, context))
 
     def load_answers(self):
         'read answers.json to dict'
-        with open('answers.json') as json_file:
+        with open('chatbot/answers.json') as json_file:
             f = json.load(json_file)
             for k, answer in f.items():
                 # self.answers.append(Answer(k, answer))
