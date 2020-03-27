@@ -8,7 +8,7 @@ class Gui(threading.Thread):
     def __init__(self, client):
         super().__init__(daemon=False, target=self.run)
         self.client = client
-        # self.run
+        # self.run()
         self.start_window = None
         self.chat_window = None
 
@@ -60,7 +60,7 @@ class StartWindow(Window):
 
 class ChatWindow(Window):
     def __init__(self, gui):
-        super().__init__("Python Chat")
+        super().__init__("Funny Python Chat")
         self.gui = gui
         self.messages_list = None
         self.entry = None
