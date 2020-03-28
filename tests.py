@@ -1,47 +1,45 @@
-from __future__ import annotations
-from abc import ABC, abstractmethod
+# def boxBlur(image):
 
-class Creator(ABC):
+#     threeMatrix = []
+#     threeBlur = []
+#     blurredImage = []
 
-    @abstractmethod
-    def factory_method(self): pass
+#     for i in range(1, len(image) - 1):
+#         for j in range(1, len(image) - 1):
+#             threeMatrix.append(
+#                 [image[i - 1][j - 1], image[i - 1][j], image[i - 1][j + 1],
+#                  image[i][j - 1],     image[i][j],     image[i][j + 1],
+#                  image[i + 1][j - 1], image[i + 1][j], image[i + 1][j + 1]]
+#             )
+#     for x in range(len(threeMatrix)):
+#         threeBlur.append(int(sum(threeMatrix[x]) / len(threeMatrix[x])))
 
-    def some_operation(self) -> str:
-        # Call the factory method to create a Product object.
-        product = self.factory_method()
-        # Now, use the product.
-        result = f"Creator: The same creator's code has just worked with {product.operation()}"
-        return result
+#     for z in range(0, len(threeBlur), (len(image[0]) - 2)):
+#         blurredImage.append(threeBlur[z:z + (len(image[0]) - 2)])
+    
+#     return blurredImage
 
-class ConcreteCreator1(Creator):
-    def factory_method(self) -> ConcreteProduct1:
-        return ConcreteProduct1()
+def pixel(matrix,i,j):
+    total = 0
+    for x in range(i - 1, i + 2):
+        for y in range(j - 1, j + 2):
+            total += matrix[x][y]
+    return total//9
 
-class ConcreteCreator2(Creator):
-    def factory_method(self) -> ConcreteProduct2:
-        return ConcreteProduct2()
-
-class Product(ABC):
-    @abstractmethod
-    def operation(self) -> str:
-        pass
-
-class ConcreteProduct1(Product):
-    def operation(self) -> str:
-        return "{Result of the ConcreteProduct1}"
-
-class ConcreteProduct2(Product):
-    def operation(self) -> str:
-        return "{Result of the ConcreteProduct2}"
-
-def client_code(creator: Creator) -> None:
-    print(f"Client: I'm not aware of the creator's class, but it still works.\n"
-          f"{creator.some_operation()}", end="")
-
-if __name__ == "__main__":
-    print("App: Launched with the ConcreteCreator1.")
-    client_code(ConcreteCreator1())
-    print("\n")
-
-    print("App: Launched with the ConcreteCreator2.")
-    client_code(ConcreteCreator2())
+def boxBlur(image):
+    sol = []
+    row = len(image)
+    col = len(image[0])
+    for i in range(1, row - 1):
+        temp = []
+        for j in range(1, col - 1):
+            temp.append(pixel(image, i, j))
+        sol.append(temp)
+    
+    return sol
+print(boxBlur([[1,1,1], 
+               [1,7,1], 
+               [1,1,1]]), 'result should be: [[1]]')
+print(boxBlur([[36,0,18,9], 
+                [27,54,9,0], 
+                [81,63,72,45]]), 'result should be: [[40,30]]')

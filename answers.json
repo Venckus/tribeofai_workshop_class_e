@@ -5,6 +5,14 @@
     "agree": "I think so, ",
     "disapointed": "Sorry, I have disapointed you",
     "cute": "you are cute",
-    "unknown": "Sorry, I'm to yong. Do not understand this. Can you explain?",
-    "joint": "You know, I think "
+    "unknown": "Sorry, I'm to young. Do not understand this. Can you explain?",
+    "joint": "You know, I think ",
+    "neutral": [
+        "You know",
+        "I think",
+        "what if",
+        "sometimes",
+        "as You say",
+        "it could be"
+    ]
 }

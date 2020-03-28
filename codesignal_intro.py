@@ -292,3 +292,42 @@ def isIPv4Address(inputString):
 print('=========\n1) isIPv4Address is true =', isIPv4Address("172.16.254.1"))
 print('=========\n2) isIPv4Address is false =', isIPv4Address("172.316.254.1"))
 print('=========\n3) isIPv4Address is false =', isIPv4Address(".254.255.0"))
+
+# codesignal 22
+def avoidObstacles(inputArray):
+    for i in range(1, max(inputArray)):
+        divs = any([x for x in inputArray if not x%i])
+        if not divs:
+            return i
+    return max(inputArray) + 1
+# tests
+print(avoidObstacles([5, 3, 6, 7, 9]))
+print(avoidObstacles([2, 3]))
+print(avoidObstacles([1, 4, 10, 6, 2]))
+
+# codesignal 23
+def pixel(matrix,i,j):
+    total = 0
+    for x in range(i - 1, i + 2):
+        for y in range(j - 1, j + 2):
+            total += matrix[x][y]
+    return total//9
+
+def boxBlur(image):
+    sol = []
+    row = len(image)
+    col = len(image[0])
+    for i in range(1, row - 1):
+        temp = []
+        for j in range(1, col - 1):
+            temp.append(pixel(image, i, j))
+        sol.append(temp)
+    
+    return sol
+# tests
+print(boxBlur([[1,1,1], 
+               [1,7,1], 
+               [1,1,1]]), 'result should be: [[1]]')
+print(boxBlur([[36,0,18,9], 
+                [27,54,9,0], 
+                [81,63,72,45]]), 'result should be: [[40,30]]')

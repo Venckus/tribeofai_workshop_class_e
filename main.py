@@ -1,7 +1,8 @@
 #!/usr/local/bin/python3
 import kivy, datetime
 # my package
-from .nlp import Nlp
+import nlp
+# kivy
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
@@ -58,7 +59,7 @@ class ScrollableLabel(ScrollView):
         # First add new line and message itself
         self.chat_history.text += '\n' + message
 
-        self.layout.height = self.chat_history.texture_size[1] + 15
+        self.layout.height = self.chat_history.texture_size[1] + 14
         self.chat_history.height = self.chat_history.texture_size[1]
         self.chat_history.text_size = (self.chat_history.width * 0.98, None)
 
@@ -68,6 +69,9 @@ class ScrollableLabel(ScrollView):
 class ChatPage(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        
+        # !!! instantantiate nlp class here
+        self.nlp = nlp.Nlp()
 
         # We are going to use 1 column and 2 rows
         self.cols = 1
@@ -112,7 +116,9 @@ class ChatPage(GridLayout):
                 f'[/color] > {message}')
             # socket_client.send(message)
             # !!!! implement message handling service here
-            self.incoming_message('me',message)
+            # self.incoming_message('me',message)
+            response = self.nlp.process(chat_app.connect_page.username.text, message)
+            self.incoming_message('Funny bot',response)
 
         # As mentioned above, we have to shedule for refocusing to input field
         Clock.schedule_once(self.focus_text_input, 0.1)
