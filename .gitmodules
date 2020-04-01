@@ -1,0 +1,3 @@
+[submodule "funny-chatbot"]
+	path = funny-chatbot
+	url = https://github.com/Venckus/funny-chatbot.git

@@ -1,4 +1,5 @@
-# Project for class E
-Funny chatbot takes user input analyses it and returns funny responses. Kivy framework is used for GUI. Back-end nlp.py package is used for processing.
-## how to setup
-`pip3 install kivy`
+# Tribe of AI course E (learning Python)
+Class of learning Python fundamentals. Lots of small tasks and a project.
+
+## Project
+Simple chat-bot application was choosen for a project.
